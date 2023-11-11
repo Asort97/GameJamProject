@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerSkills : MonoBehaviour
 {
+    [SerializeField] private Animator swordAnimator;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform shootPoint;
     [SerializeField] private Transform anchorPoint;
@@ -19,11 +20,16 @@ public class PlayerSkills : MonoBehaviour
     [SerializeField] private float attackDamage;
     [SerializeField] private float shootDamage;
 
+    [Space(5)]
+    [SerializeField] private string[] swordStates;
+
+    [Space(5)]
+
     private float attackCd;
     private float shootCd;
     private float minaCd;
     private float dashCd;
-
+    private int swordState;
     private MeleeDetector meleeDetector;
 
     private void Start()
@@ -43,6 +49,8 @@ public class PlayerSkills : MonoBehaviour
         {
             if(Input.GetMouseButtonDown(0))
             {
+                swordAnimator.SetTrigger(swordStates[swordState]);
+                
                 if(meleeDetector.EnemiesObjects.Length != 0)
                 {
                     foreach (var enemy in meleeDetector.EnemiesObjects)
@@ -52,9 +60,9 @@ public class PlayerSkills : MonoBehaviour
                             damagable.TakeDamage(attackDamage);
                         }
                     }
-
-                    attackCd = attackCooldown;
                 }            
+                
+                attackCd = attackCooldown;
             }
         }
 
