@@ -1,32 +1,28 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D rb;
-
+    [SerializeField] private Camera cam;
+    [SerializeField] private Rigidbody2D rbAnchor;
     private Vector2 mousePos;
 
-    private void Start()
-    {
-        
-    }
     private void Update()
     {
-         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    }
-    private void FixedUpdate()
-    {
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         Look();
     }
-
+    
     private void Look()
     {
-        Vector2 lookDir = mousePos - rb.position;
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-        rb.rotation = angle;
+        Vector2 lookDir = mousePos - (Vector2)transform.position;
+
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 180f;
+
+        rbAnchor.rotation = angle;
     }
 }
