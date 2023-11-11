@@ -14,18 +14,14 @@ public class MouseLook : MonoBehaviour
     private void Update()
     {
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-    }
-    
-    private void FixedUpdate()
-    {
         Look();
     }
-
+    
     private void Look()
     {
         Vector2 lookDir = mousePos - (Vector2)transform.position;
 
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 180f;
 
         rbAnchor.rotation = angle;
     }

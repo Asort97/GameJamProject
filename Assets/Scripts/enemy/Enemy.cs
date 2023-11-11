@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour, IDamageble
 {
     [SerializeField] private Transform playerTransform;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float attackCooldown; 
     private float attackInterval;
+    private float health = 100;
 
     public virtual void Move()
     {
@@ -33,6 +34,16 @@ public abstract class Enemy : MonoBehaviour
         if(attackInterval >= 0f)
         {
             attackInterval -= Time.deltaTime;
+        }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+
+        if(health <= 0f)
+        {
+            Destroy(gameObject);
         }
     }
 }
