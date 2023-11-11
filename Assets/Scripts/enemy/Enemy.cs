@@ -1,18 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Transform playerTransform;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float attackCooldown; 
+    private float attackInterval;
+
+    public virtual void Move()
     {
-        
+        if(Vector2.Distance(transform.position, playerTransform.position) > 0.2f)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, moveSpeed * Time.deltaTime);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public virtual void Attack()
     {
-        
+        if(Vector2.Distance(transform.position, playerTransform.position) <= 0.2f)
+        {
+            if(attackInterval <= 0f)
+            {
+                Debug.Log($"Attack");
+
+                attackInterval = attackCooldown;
+            }
+        }
+
+        if(attackInterval >= 0f)
+        {
+            attackInterval -= Time.deltaTime;
+        }
     }
 }
