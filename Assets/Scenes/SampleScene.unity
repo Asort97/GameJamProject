@@ -1070,9 +1070,12 @@ MonoBehaviour:
   attackDamage: 0
   shootDamage: 0
   swordStates:
-  - fullAttack
-  - halfAttack
-  - zeroAttack
+  - anim: fullAttack
+    attackRange: 1.64
+  - anim: halfAttack
+    attackRange: 1.08
+  - anim: zeroAttack
+    attackRange: 0.65
 --- !u!114 &1437344872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1324,7 +1327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e361cae9e6e7d924999be31d713d08e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raduisCast: 0.65
+  raduisCast: 1.64
   layerEnemyMask:
     serializedVersion: 2
     m_Bits: 64
@@ -1475,7 +1478,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.19230771, y: 0, z: 0}
   m_MaxChunkCount: 16

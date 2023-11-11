@@ -1,10 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerSkills : MonoBehaviour
 {
+    [Serializable]
+    public struct SwordStates
+    {
+        public string anim;
+        public float attackRange;
+    }
+
     [SerializeField] private Animator swordAnimator;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform shootPoint;
@@ -21,7 +28,7 @@ public class PlayerSkills : MonoBehaviour
     [SerializeField] private float shootDamage;
 
     [Space(5)]
-    [SerializeField] private string[] swordStates;
+    [SerializeField] private SwordStates[] swordStates;
 
     [Space(5)]
 
@@ -29,7 +36,7 @@ public class PlayerSkills : MonoBehaviour
     private float shootCd;
     private float minaCd;
     private float dashCd;
-    private int swordState;
+    private int currentSwordState;
     private MeleeDetector meleeDetector;
 
     private void Start()
@@ -49,7 +56,7 @@ public class PlayerSkills : MonoBehaviour
         {
             if(Input.GetMouseButtonDown(0))
             {
-                swordAnimator.SetTrigger(swordStates[swordState]);
+                swordAnimator.SetTrigger(swordStates[currentSwordState].anim);
                 
                 if(meleeDetector.EnemiesObjects.Length != 0)
                 {
@@ -61,7 +68,7 @@ public class PlayerSkills : MonoBehaviour
                         }
                     }
                 }            
-                
+
                 attackCd = attackCooldown;
             }
         }
