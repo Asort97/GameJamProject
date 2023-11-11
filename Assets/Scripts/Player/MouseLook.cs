@@ -16,7 +16,7 @@ public class MouseLook : MonoBehaviour
     }
     private void Update()
     {
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
     private void FixedUpdate()
     {
