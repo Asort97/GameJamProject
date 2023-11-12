@@ -5,24 +5,51 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour, IDamageble
 {
+    public Transform body;
     public Transform playerTransform;
     public float repelForce;
+    public float stopDistance;
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float attackCooldown; 
+    public Animator anim;
+    public float attackCooldown; 
     public Rigidbody2D rb;
     public float damage;
-    private float attackInterval;
+    public float attackInterval;
+    public bool isStop;
     private float health = 100;
 
     public virtual void Move()
     {
-        if(Vector2.Distance(transform.position, playerTransform.position) > 0.1f)
+        if(Vector2.Distance(transform.position, playerTransform.position) > stopDistance)
         {
+            isStop = false;
+
+            anim.SetBool("isRunning", true);
+
             Vector2 directionToPlayer = (Vector2)playerTransform.position - rb.position;
 
-            rb.MovePosition(rb.position + directionToPlayer * moveSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, moveSpeed * Time.deltaTime);
+        }
+        else
+        {
+            anim.SetBool("isRunning", false);
 
-            // transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, moveSpeed * Time.deltaTime);
+            isStop = true;
+        }
+    }
+    
+    public virtual void FlipToPlayer()
+    {
+        float dot = Vector2.Dot(playerTransform.position-transform.position, transform.right);
+
+        if(dot > 0f)
+        {
+            body.eulerAngles = new Vector2(0, 180f);
+            
+        }
+        else if(dot < 0f)
+        {
+            body.eulerAngles = new Vector2(0, 0f);
         }
     }
 

@@ -15,7 +15,10 @@ public class Bullet : MonoBehaviour
     {
         if(other.gameObject.TryGetComponent(out IDamageble damagable))
         {
+            Debug.Log($"sdsdsd");
             damagable.TakeDamage(3);
+
+            Destroy(gameObject);
         }
     }
 }

@@ -4,20 +4,27 @@ using UnityEngine;
 
 public class PirozokEnemy : Enemy
 {
-    [SerializeField] private GameObject bulletPrefab;
-    
-    private void Start()
-    {
-        
-    }
-
     private void Update()
     {
         Move();
     }
 
-    public override void Attack()
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        
+        if(other.gameObject.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<IDamageble>().TakeDamage(damage);
+
+            StartCoroutine(waitForStop());
+        }
+    }
+
+    IEnumerator waitForStop()
+    {
+        Vector2 repelDirection = transform.position - playerTransform.position;
+        rb.AddForce(repelDirection * repelForce, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.2f);
+
+        rb.velocity = Vector2.zero;
     }
 }

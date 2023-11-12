@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour, IDamageble
         if (Input.GetKey(KeyCode.W))
         {
             transform.Translate(new Vector2(0, movementSpeed * Time.deltaTime));
+
             swordTransform.eulerAngles = new Vector3(0f, 0f, -90f);
         }
         else if (Input.GetKey(KeyCode.S))
@@ -46,8 +47,8 @@ public class PlayerMovement : MonoBehaviour, IDamageble
 
             bodyTransform.eulerAngles = new Vector2(0, 0);
             swordTransform.eulerAngles = new Vector2(0, 0);
-
         }
+
         if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
         {
             anim.SetBool("isRunning", true);
@@ -55,6 +56,7 @@ public class PlayerMovement : MonoBehaviour, IDamageble
         else
         {
             anim.SetBool("isRunning", false);
+            rb.velocity = Vector2.zero;
         }
 
     }
