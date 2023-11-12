@@ -8,7 +8,7 @@ using UnityEngine;
 public class MouseLook : MonoBehaviour
 {
     [SerializeField] private Camera cam;
-    [SerializeField] private Rigidbody2D rbAnchor;
+    [SerializeField] private Transform anchorTransform;
     private Vector2 mousePos;
 
     private void Update()
@@ -23,6 +23,6 @@ public class MouseLook : MonoBehaviour
 
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 180f;
 
-        rbAnchor.rotation = angle;
+        anchorTransform.rotation = Quaternion.Euler(0,0,angle);
     }
 }

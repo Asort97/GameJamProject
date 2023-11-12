@@ -6,11 +6,21 @@ public class MeleeDetector : MonoBehaviour
 {
     [SerializeField] private float raduisCast;
     [SerializeField] private LayerMask layerEnemyMask;
+    [SerializeField] private GameObject swordBack;
     public Collider2D[] EnemiesObjects;
 
     private void Update()
     {
         EnemiesObjects = Physics2D.OverlapCircleAll(transform.position, raduisCast, layerEnemyMask);
+    }
+
+    public void DisableSword()
+    {
+        swordBack.SetActive(false);
+    }
+    public void EnableSword()
+    {
+        swordBack.SetActive(true);
     }
 
     private void OnDrawGizmos()

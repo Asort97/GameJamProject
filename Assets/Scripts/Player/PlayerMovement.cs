@@ -24,26 +24,25 @@ public class PlayerMovement : MonoBehaviour, IDamageble
     {
         if (Input.GetKey(KeyCode.W))
         {
-            rb.transform.Translate(new Vector2(0, movementSpeed * Time.deltaTime));
-
+            transform.Translate(new Vector2(0, movementSpeed * Time.deltaTime));
             swordTransform.eulerAngles = new Vector3(0f, 0f, -90f);
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            rb.transform.Translate(new Vector2(0, -movementSpeed * Time.deltaTime));
+            transform.Translate(new Vector2(0, -movementSpeed * Time.deltaTime));
 
             swordTransform.eulerAngles = new Vector3(0f, 0f, 90f);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            rb.transform.Translate(new Vector2(movementSpeed * Time.deltaTime, 0));
+            transform.Translate(new Vector2(movementSpeed * Time.deltaTime, 0));
 
             bodyTransform.eulerAngles = new Vector2(0, -180f);
             swordTransform.eulerAngles = new Vector2(0, -180f);
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            rb.transform.Translate(new Vector2(-movementSpeed * Time.deltaTime, 0));
+            transform.Translate(new Vector2(-movementSpeed * Time.deltaTime, 0));
 
             bodyTransform.eulerAngles = new Vector2(0, 0);
             swordTransform.eulerAngles = new Vector2(0, 0);
