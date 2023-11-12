@@ -18,4 +18,16 @@ public class Bullet : MonoBehaviour
             damagable.TakeDamage(3);
         }
     }
+    private void FixedUpdate() // ѕул пули
+    {
+        if(transform.position.x > 24 || transform.position.x < -24)
+        {
+            this.gameObject.SetActive(false);
+            
+        }
+        if(transform.position.y > 17 || transform.position.y < -17)
+        {
+            this.gameObject.SetActive(false);
+        }
+    }
 }

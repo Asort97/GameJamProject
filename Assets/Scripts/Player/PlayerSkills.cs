@@ -23,7 +23,7 @@ public class PlayerSkills : MonoBehaviour
     [SerializeField] private float shootCooldown;
     [SerializeField] private float minaCooldown;
     [SerializeField] private float dashCooldown;
-
+    
     [SerializeField] private float attackDamage;
     [SerializeField] private float shootDamage;
 
@@ -31,16 +31,23 @@ public class PlayerSkills : MonoBehaviour
     [SerializeField] private SwordStates[] swordStates;
 
     [Space(5)]
-
+   [SerializeField] private GameObject bullet;
     private float attackCd;
     private float shootCd;
     private float minaCd;
     private float dashCd;
     private int currentSwordState;
     private MeleeDetector meleeDetector;
-
+    private void Awake()
+    {
+        bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation, null);
+        bullet.gameObject.SetActive(false);
+    }
     private void Start()
     {
+        
+        
+        bullet.GetComponent<GameObject>();
         meleeDetector = GetComponentInChildren<MeleeDetector>();
     }
 
@@ -85,9 +92,13 @@ public class PlayerSkills : MonoBehaviour
         {
             if(Input.GetMouseButtonDown(1))
             {
-                GameObject bullet = Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation, null);
 
-                bullet.GetComponent<Bullet>().Init(forceBullet);
+                bullet.transform.position = shootPoint.position;
+                bullet.transform.rotation = shootPoint.rotation;
+                bullet.SetActive(true);
+                
+
+              bullet.GetComponent<Bullet>().Init(forceBullet);
 
                 shootCd = shootCooldown;
             }

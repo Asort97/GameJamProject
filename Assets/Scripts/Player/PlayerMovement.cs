@@ -69,5 +69,27 @@ public class PlayerMovement : MonoBehaviour, IDamageble
             Debug.Log($"Die");
         }
     }
-
+    private void FixedUpdate()
+    {
+        if (rb.transform.position.x > 17.3)
+        {
+            rb.transform.Translate(new Vector2(2, 2));
+            bodyTransform.Rotate(0, 0, 5);
+        }
+        else if(rb.transform.position.x < -17.3)
+        {
+            rb.transform.Translate(new Vector2(-2, 2));
+            bodyTransform.Rotate(0, 0, -5);
+        }
+        if(rb.transform.position.y > 12)
+        {
+            rb.transform.Translate(new Vector2(0, 2));
+            bodyTransform.Rotate(0, 0, -5);
+        }
+        else if(rb.transform.position.y < - 12)
+        {
+            rb.transform.Translate(new Vector2(0, -2));
+            bodyTransform.Rotate(0, 0, 5);
+        }
+    }
 }
