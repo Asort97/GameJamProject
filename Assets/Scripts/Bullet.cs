@@ -5,32 +5,25 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
+    private float currentDamage;
 
-    public void Init(float Force)
+    public void Init(float Force, float damage)
     {   
+        currentDamage = damage;
+
         rb.AddForce(transform.up * Force, ForceMode2D.Impulse);
+
+
+        Destroy(gameObject, 10f);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.TryGetComponent(out IDamageble damagable))
+        if(other.TryGetComponent(out IDamageble damagable))
         {
-            Debug.Log($"sdsdsd");
-            damagable.TakeDamage(3);
+            damagable.TakeDamage(currentDamage);
 
             Destroy(gameObject);
-        }
-    }
-    private void FixedUpdate() // ѕул пули
-    {
-        if(transform.position.x > 24 || transform.position.x < -24)
-        {
-            this.gameObject.SetActive(false);
-            
-        }
-        if(transform.position.y > 17 || transform.position.y < -17)
-        {
-            this.gameObject.SetActive(false);
         }
     }
 }

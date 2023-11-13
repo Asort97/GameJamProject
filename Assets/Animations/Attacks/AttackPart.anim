@@ -22,15 +22,15 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: 29120680, guid: a6d6cf3d334c2a844a28cd54b2e67f88, type: 3}
-    - time: 0.06666667
+    - time: 0.033333335
       value: {fileID: -1502404416, guid: a6d6cf3d334c2a844a28cd54b2e67f88, type: 3}
-    - time: 0.15
+    - time: 0.06666667
       value: {fileID: -1778322037, guid: a6d6cf3d334c2a844a28cd54b2e67f88, type: 3}
-    - time: 0.16666667
+    - time: 0.083333336
       value: {fileID: 327027392, guid: a6d6cf3d334c2a844a28cd54b2e67f88, type: 3}
-    - time: 0.25
+    - time: 0.11666667
       value: {fileID: 230072214, guid: a6d6cf3d334c2a844a28cd54b2e67f88, type: 3}
-    - time: 0.31666666
+    - time: 0.15
       value: {fileID: 449458851, guid: a6d6cf3d334c2a844a28cd54b2e67f88, type: 3}
     attribute: m_Sprite
     path: 
@@ -65,7 +65,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.33333334
+    m_StopTime: 0.16666667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -92,7 +92,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.31666666
+  - time: 0.15
     functionName: EnableSword
     data: 
     objectReferenceParameter: {fileID: 0}

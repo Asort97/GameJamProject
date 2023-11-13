@@ -11,6 +11,11 @@ public class MouseLook : MonoBehaviour
     [SerializeField] private Transform anchorTransform;
     private Vector2 mousePos;
 
+    private void Start()
+    {
+        cam = Camera.main;
+    }
+
     private void Update()
     {
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);

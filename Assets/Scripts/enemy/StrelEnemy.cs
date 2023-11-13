@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StrelEnemy : Enemy
+public class StrelEnemy : Enemy, IDamageble
 {
     public float speedBullet;
     public GameObject bulletPref;
@@ -17,7 +17,7 @@ public class StrelEnemy : Enemy
 
         anchorTransform.rotation = Quaternion.Euler(0,0,angle);
 
-        
+
         FlipToPlayer();
         Attack();
         Move();
@@ -29,7 +29,7 @@ public class StrelEnemy : Enemy
         if(attackInterval <= 0f && isStop)
         {
             GameObject bullet = Instantiate(bulletPref, shootPoint.position, shootPoint.rotation, null);
-            bullet.GetComponent<Bullet>().Init(speedBullet);
+            bullet.GetComponent<Bullet>().Init(speedBullet, BattleManager.StrelDamage);
 
             attackInterval = attackCooldown;
         }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MeleeDetector : MonoBehaviour
 {
-    [SerializeField] private float raduisCast;
+    public float raduisCast;
     [SerializeField] private LayerMask layerEnemyMask;
     [SerializeField] private GameObject swordBack;
     public Collider2D[] EnemiesObjects;

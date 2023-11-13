@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TP
   - Bullet
+  - DEADZONE
   layers:
   - Default
   - TransparentFX
